@@ -64,17 +64,17 @@ version(Node) ->
     ServerVersion.
 
 auth(Node, User, Pass) ->
-    call(Node,{user, auth, User, Pass}).
+    call(Node, libsnarl_msg:auth(User, Pass)).
 
 allowed(Node, User, Permission) ->
-    call(Node,{user, allowed, User, Permission}).
+    call(Node, libsnarl_msg:allowed(User, Permission)).
 
 %%%===================================================================
 %%% Token Functions
 %%%===================================================================
 
 token_delete(Node, Token) ->
-    call(Node,{token, delete, Token}).
+    call(Node, libsnarl_msg:token_delete(Token)).
 
 %%%===================================================================
 %%% User Functions
@@ -82,44 +82,44 @@ token_delete(Node, Token) ->
 
 user_set(Node, User, Attribute, Value) when
       is_binary(User) ->
-    call(Node,{user, set, User, Attribute, Value}).
+    call(Node, libsnarl_msg:user_set(User, Attribute, Value)).
 
 user_set(Node, User, Attributes) when
       is_binary(User) ->
-    call(Node,{user, set, User, Attributes}).
+    call(Node,libsnarl_msg:user_set(User, Attributes)).
 
 user_list(Node) ->
-    call(Node,{user, list}).
+    call(Node,libsnarl_msg:user_list()).
 
 user_get(Node, User) ->
-    call(Node,{user, get, User}).
+    call(Node,libsnarl_msg:user_get(User)).
 
 user_lookup(Node, User) ->
-    call(Node,{user, lookup, User}).
+    call(Node,libsnarl_msg:user_lookup(User)).
 
 user_cache(Node, User) ->
-    call(Node,{user, cache, User}).
+    call(Node,libsnarl_msg:user_cache(User)).
 
 user_add(Node, User) ->
-    call(Node,{user, add, User}).
+    call(Node,libsnarl_msg:user_add(User)).
 
 user_delete(Node, User) ->
-    call(Node,{user, delete, User}).
+    call(Node,libsnarl_msg:user_delete(User)).
 
 user_grant(Node, User, Permission) ->
-    call(Node,{user, grant, User, Permission}).
+    call(Node,libsnarl_msg:user_grant(User, Permission)).
 
 user_revoke(Node, User, Permission) ->
-    call(Node,{user, revoke, User, Permission}).
+    call(Node,libsnarl_msg:user_revoke(User, Permission)).
 
 user_passwd(Node, User, Pass) ->
-    call(Node,{user, passwd, User, Pass}).
+    call(Node,libsnarl_msg:user_passwd(User, Pass)).
 
 user_join(Node, User, Group) ->
-    call(Node,{user, join, User, Group}).
+    call(Node,libsnarl_msg:user_join(User, Group)).
 
 user_leave(Node, User, Group) ->
-    call(Node,{user, leave, User, Group}).
+    call(Node,libsnarl_msg:user_leave(User, Group)).
 
 %%%===================================================================
 %%% Group Functions
@@ -127,26 +127,26 @@ user_leave(Node, User, Group) ->
 
 group_set(Node, Group, Attribute, Value) when
       is_binary(Group) ->
-    call(Node,{group, set, Group, Attribute, Value}).
+    call(Node,libsnarl_msg:group_set(Group, Attribute, Value)).
 
 group_set(Node, Group, Attributes) when
       is_binary(Group) ->
-    call(Node,{group, set, Group, Attributes}).
+    call(Node,libsnarl_msg:group_set(Group, Attributes)).
 
 group_list(Node) ->
-    call(Node,{group, list}).
+    call(Node,libsnarl_msg:group_list()).
 
 group_get(Node, Group) ->
-    call(Node,{group, get, Group}).
+    call(Node,libsnarl_msg:group_get(Group)).
 
 group_add(Node, Group) ->
-    call(Node,{group, add, Group}).
+    call(Node,libsnarl_msg:group_add(Group)).
 
 group_delete(Node, Group) ->
-    call(Node,{group, delete, Group}).
+    call(Node,libsnarl_msg:group_delete(Group)).
 
 group_grant(Node, Group, Permission) ->
-    call(Node,{group, grant, Group, Permission}).
+    call(Node,libsnarl_msg:group_grant(Group, Permission)).
 
 group_revoke(Node, Group, Permission) ->
-    call(Node,{group, revoke, Group, Permission}).
+    call(Node,libsnarl_msg:group_revoke(Group, Permission)).

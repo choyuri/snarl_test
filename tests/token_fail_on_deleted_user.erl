@@ -21,6 +21,5 @@ confirm() ->
     {ok, Token} = rt_snarl:auth(Node, ?USER1, ?USER1),
     ?assertEqual({ok, UserObj}, rt_snarl:user_get(Node, Token)),
     ?assertEqual(ok, rt_snarl:user_delete(Node, UUID1)),
-    ?assertEqual({ok,not_found}, rt_snarl:user_get(Node, Token)),
-
+    ?assertEqual(not_found, rt_snarl:user_get(Node, Token)),
     pass.
