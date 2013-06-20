@@ -1,9 +1,7 @@
 -module(rt_snarl).
 
-
 -export([node_endpoing/1,
          call/2]).
-
 
 -export([
          auth/3,
