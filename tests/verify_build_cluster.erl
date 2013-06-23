@@ -114,7 +114,10 @@ wait_and_validate(RingNodes, UpNodes, UUID1) ->
     done.
 
 user(Name, UUID) ->
-    [{<<"name">>,Name},
+    [{<<"groups">>,[]},
+     {<<"metadata">>,[]},
+     {<<"name">>,Name},
+     {<<"password">>,<<>>},
      {<<"permissions">>,
       [[<<"user">>, UUID, <<"...">>]]},
      {<<"uuid">>, UUID}].
