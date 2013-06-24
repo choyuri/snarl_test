@@ -1,4 +1,4 @@
--module(verify_user_gdable).
+-module(verify_user_gc).
 -include_lib("eunit/include/eunit.hrl").
 
 -behavior(riak_test).
