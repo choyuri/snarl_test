@@ -47,4 +47,9 @@ confirm() ->
     {ok, {Ps3, Gs3}} = rpc:call(Node, snarl_user, gcable, [UUID]),
     ?assertEqual(1, length(Ps3)),
     ?assertEqual(1, length(Gs3)),
+    {ok, GCed} = rpc:call(Node, snarl_user, gc, [UUID, {Ps3, Gs3}]),
+    lager:debug("GC freed ~p bytes.", [GCed]),
+    {ok, {Ps4, Gs4}} = rpc:call(Node, snarl_user, gcable, [UUID]),
+    ?assertEqual(0, length(Ps4)),
+    ?assertEqual(0, length(Gs4)),
     pass.
