@@ -4,7 +4,7 @@ CONFIG = snarl
 
 APPS = kernel stdlib sasl erts ssl tools os_mon runtime_tools crypto inets \
 	xmerl webtool eunit syntax_tools compiler hipe mnesia public_key \
-	observer wx gs
+	observer wx gs glc
 PLT = $(HOME)/.riak-test_dialyzer_plt
 
 all: deps compile

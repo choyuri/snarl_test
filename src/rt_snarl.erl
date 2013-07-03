@@ -14,17 +14,20 @@
         ]).
 
 -export([
-         user_lookup/2,
-         user_list/1,
-         user_cache/2,
-         user_get/2,
          user_add/2,
+         user_cache/2,
          user_delete/2,
+         user_get/2,
          user_grant/3,
-         user_revoke/3,
-         user_passwd/3,
          user_join/3,
+         user_key_add/4,
+         user_key_revoke/3,
+         user_keys/2,
          user_leave/3,
+         user_list/1,
+         user_lookup/2,
+         user_passwd/3,
+         user_revoke/3,
          user_set/3,
          user_set/4
         ]).
@@ -115,6 +118,16 @@ user_passwd(Node, User, Pass) ->
 
 user_join(Node, User, Group) ->
     call(Node,libsnarl_msg:user_join(User, Group)).
+
+user_key_add(Node, User, KeyID, Key) ->
+    call(Node, libsnarl_msg:user_key_add(User, KeyID, Key)).
+
+user_key_revoke(Node, User, KeyID) ->
+    call(Node, libsnarl_msg:user_key_revoke(User, KeyID)).
+
+user_keys(Node, User) ->
+    call(Node, libsnarl_msg:user_keys(User)).
+
 
 user_leave(Node, User, Group) ->
     call(Node,libsnarl_msg:user_leave(User, Group)).
