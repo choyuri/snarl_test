@@ -11,6 +11,7 @@ confirm() ->
     ?assertEqual(ok, rt:wait_until_nodes_ready([Node])),
     {ok, UUID1} = rt_snarl:user_add(Node, ?USER1),
     UserObj = [{<<"groups">>,[]},
+               {<<"keys">>,[]},
                {<<"metadata">>,[]},
                {<<"name">>,?USER1},
                {<<"password">>,
