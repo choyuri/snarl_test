@@ -118,7 +118,8 @@ user(Name, UUID) ->
      {<<"keys">>,[]},
      {<<"metadata">>,[]},
      {<<"name">>,Name},
-     {<<"password">>,<<>>},
+     {<<"org">>,<<>>},
+     {<<"orgs">>,[]},
      {<<"permissions">>,
-      [[<<"user">>, UUID, <<"...">>]]},
+      [[<<"users">>, UUID, <<"...">>]]},
      {<<"uuid">>, UUID}].

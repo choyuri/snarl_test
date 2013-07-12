@@ -23,11 +23,3 @@ confirm() ->
     ?assertEqual(ok, rt_snarl:user_key_revoke(Node, UUID, ?KID1)),
     ?assertEqual({ok, [{?KID2, ?K2}]}, rt_snarl:user_keys(Node, UUID)),
     pass.
-    %% ?assertEqual(ok, rt_snarl:user_grant(Node, UUIDU, ?P1)),
-    %% ?assertEqual(true, rt_snarl:allowed(Node, UUIDU, ?P1)),
-
-    %% {ok, UUIDG} = rt_snarl:group_add(Node, ?GROUP1),
-    %% ?assertEqual(ok, rt_snarl:group_grant(Node, UUIDG, ?P2)),
-    %% ?assertEqual(false, rt_snarl:allowed(Node, UUIDU, ?P2)),
-    %% ?assertEqual(ok, rt_snarl:user_join(Node, UUIDU, UUIDG)),
-    %% ?assertEqual(true, rt_snarl:allowed(Node, UUIDU, ?P2)),

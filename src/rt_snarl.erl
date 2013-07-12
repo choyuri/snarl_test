@@ -29,7 +29,12 @@
          user_passwd/3,
          user_revoke/3,
          user_set/3,
-         user_set/4
+         user_set/4,
+         user_join_org/3,
+         user_leave_org/3,
+         user_select_org/3,
+         user_active_org/2,
+         user_orgs/2
         ]).
 
 -export([
@@ -41,6 +46,18 @@
          group_revoke/3,
          group_set/3,
          group_set/4
+        ]).
+
+-export([
+         org_add/2,
+         org_delete/2,
+         org_get/2,
+         org_add_trigger/3,
+         org_list/1,
+         org_remove_trigger/3,
+         org_execute_trigger/4,
+         org_set/3,
+         org_set/4
         ]).
 
 
@@ -119,6 +136,9 @@ user_passwd(Node, User, Pass) ->
 user_join(Node, User, Group) ->
     call(Node,libsnarl_msg:user_join(User, Group)).
 
+user_leave(Node, User, Group) ->
+    call(Node,libsnarl_msg:user_leave(User, Group)).
+
 user_key_add(Node, User, KeyID, Key) ->
     call(Node, libsnarl_msg:user_key_add(User, KeyID, Key)).
 
@@ -128,9 +148,20 @@ user_key_revoke(Node, User, KeyID) ->
 user_keys(Node, User) ->
     call(Node, libsnarl_msg:user_keys(User)).
 
+user_join_org(Node, User, Org) ->
+    call(Node,libsnarl_msg:user_join_org(User, Org)).
 
-user_leave(Node, User, Group) ->
-    call(Node,libsnarl_msg:user_leave(User, Group)).
+user_leave_org(Node, User, Org) ->
+    call(Node,libsnarl_msg:user_leave_org(User, Org)).
+
+user_select_org(Node, User, Org) ->
+    call(Node,libsnarl_msg:user_select_org(User, Org)).
+
+user_active_org(Node, User) ->
+    call(Node, libsnarl_msg:user_active_org(User)).
+
+user_orgs(Node, User) ->
+    call(Node, libsnarl_msg:user_orgs(User)).
 
 %%%===================================================================
 %%% Group Functions
@@ -161,3 +192,36 @@ group_grant(Node, Group, Permission) ->
 
 group_revoke(Node, Group, Permission) ->
     call(Node,libsnarl_msg:group_revoke(Group, Permission)).
+
+%%%===================================================================
+%%% org Functions
+%%%===================================================================
+
+org_set(Node, Org, Attribute, Value) when
+      is_binary(Org) ->
+    call(Node, libsnarl_msg:org_set(Org, Attribute, Value)).
+
+org_set(Node, Org, Attributes) when
+      is_binary(Org) ->
+    call(Node, libsnarl_msg:org_set(Org, Attributes)).
+
+org_list(Node) ->
+    call(Node, libsnarl_msg:org_list()).
+
+org_get(Node, Org) ->
+    call(Node, libsnarl_msg:org_get(Org)).
+
+org_add(Node, Org) ->
+    call(Node, libsnarl_msg:org_add(Org)).
+
+org_delete(Node, Org) ->
+    call(Node, libsnarl_msg:org_delete(Org)).
+
+org_add_trigger(Node, Org, Trigger) ->
+    call(Node, libsnarl_msg:org_add_trigger(Org, Trigger)).
+
+org_remove_trigger(Node, Org, Trigger) ->
+    call(Node, libsnarl_msg:org_remove_trigger(Org, Trigger)).
+
+org_execute_trigger(Node, Org, Event, Payload) ->
+    call(Node, libsnarl_msg:org_execute_trigger(Org, Event, Payload)).
