@@ -53,3 +53,4 @@ confirm() ->
                  rt_snarl:allowed(
                    Node, UserID, [<<"some">>, Payload, <<"permission">>])),
     pass.
+
