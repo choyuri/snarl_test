@@ -97,8 +97,6 @@ confirm() ->
 
     pass.
 
-
-
 wait_and_validate(Nodes, UUID1) -> wait_and_validate(Nodes, Nodes, UUID1).
 wait_and_validate(RingNodes, UpNodes, UUID1) ->
     lager:info("Wait until all nodes are ready and there are no pending changes"),
