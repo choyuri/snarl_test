@@ -74,4 +74,5 @@ user(Name, UUID) ->
      {<<"orgs">>,[]},
      {<<"permissions">>,
       [[<<"users">>, UUID, <<"...">>]]},
-     {<<"uuid">>, UUID}].
+     {<<"uuid">>, UUID},
+     {<<"yubikeys">>,[]}].
