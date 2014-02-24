@@ -5,6 +5,7 @@
 
 -export([
          auth/3,
+         auth/4,
          allowed/3,
          version/1
         ]).
@@ -80,6 +81,9 @@ call(Node, Msg) ->
 version(Node) ->
     ServerVersion = call(Node,version),
     ServerVersion.
+
+auth(Node, User, Pass, Otp) ->
+    call(Node, libsnarl_msg:auth(User, Pass, Otp)).
 
 auth(Node, User, Pass) ->
     call(Node, libsnarl_msg:auth(User, Pass)).
