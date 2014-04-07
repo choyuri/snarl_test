@@ -6,14 +6,14 @@
 
 -define(USER1, <<"user1">>).
 -define(ORG1, <<"org1">>).
--define(GROUP1, <<"grop1">>).
+-define(ROLE1, <<"grop1">>).
 
 
 confirm() ->
     [Node] = rt:deploy_nodes(1),
     ?assertEqual(ok, rt:wait_until_nodes_ready([Node])),
 
-    %% Set up a user, group and org.
+    %% Set up a user, role and org.
     {ok, UserID} = rt_snarl:user_add(Node, ?USER1),
 
     %% Verify we can set metadata

@@ -39,14 +39,14 @@
         ]).
 
 -export([
-         group_list/1,
-         group_get/2,
-         group_add/2,
-         group_delete/2,
-         group_grant/3,
-         group_revoke/3,
-         group_set/3,
-         group_set/4
+         role_list/1,
+         role_get/2,
+         role_add/2,
+         role_delete/2,
+         role_grant/3,
+         role_revoke/3,
+         role_set/3,
+         role_set/4
         ]).
 
 -export([
@@ -137,11 +137,11 @@ user_revoke(Node, User, Permission) ->
 user_passwd(Node, User, Pass) ->
     call(Node,libsnarl_msg:user_passwd(User, Pass)).
 
-user_join(Node, User, Group) ->
-    call(Node,libsnarl_msg:user_join(User, Group)).
+user_join(Node, User, Role) ->
+    call(Node,libsnarl_msg:user_join(User, Role)).
 
-user_leave(Node, User, Group) ->
-    call(Node,libsnarl_msg:user_leave(User, Group)).
+user_leave(Node, User, Role) ->
+    call(Node,libsnarl_msg:user_leave(User, Role)).
 
 user_key_add(Node, User, KeyID, Key) ->
     call(Node, libsnarl_msg:user_key_add(User, KeyID, Key)).
@@ -168,34 +168,34 @@ user_orgs(Node, User) ->
     call(Node, libsnarl_msg:user_orgs(User)).
 
 %%%===================================================================
-%%% Group Functions
+%%% Role Functions
 %%%===================================================================
 
-group_set(Node, Group, Attribute, Value) when
-      is_binary(Group) ->
-    call(Node,libsnarl_msg:group_set(Group, Attribute, Value)).
+role_set(Node, Role, Attribute, Value) when
+      is_binary(Role) ->
+    call(Node,libsnarl_msg:role_set(Role, Attribute, Value)).
 
-group_set(Node, Group, Attributes) when
-      is_binary(Group) ->
-    call(Node,libsnarl_msg:group_set(Group, Attributes)).
+role_set(Node, Role, Attributes) when
+      is_binary(Role) ->
+    call(Node,libsnarl_msg:role_set(Role, Attributes)).
 
-group_list(Node) ->
-    call(Node,libsnarl_msg:group_list()).
+role_list(Node) ->
+    call(Node,libsnarl_msg:role_list()).
 
-group_get(Node, Group) ->
-    call(Node,libsnarl_msg:group_get(Group)).
+role_get(Node, Role) ->
+    call(Node,libsnarl_msg:role_get(Role)).
 
-group_add(Node, Group) ->
-    call(Node,libsnarl_msg:group_add(Group)).
+role_add(Node, Role) ->
+    call(Node,libsnarl_msg:role_add(Role)).
 
-group_delete(Node, Group) ->
-    call(Node,libsnarl_msg:group_delete(Group)).
+role_delete(Node, Role) ->
+    call(Node,libsnarl_msg:role_delete(Role)).
 
-group_grant(Node, Group, Permission) ->
-    call(Node,libsnarl_msg:group_grant(Group, Permission)).
+role_grant(Node, Role, Permission) ->
+    call(Node,libsnarl_msg:role_grant(Role, Permission)).
 
-group_revoke(Node, Group, Permission) ->
-    call(Node,libsnarl_msg:group_revoke(Group, Permission)).
+role_revoke(Node, Role, Permission) ->
+    call(Node,libsnarl_msg:role_revoke(Role, Permission)).
 
 %%%===================================================================
 %%% org Functions

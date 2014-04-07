@@ -10,7 +10,7 @@ confirm() ->
     [Node] = rt:deploy_nodes(1),
     ?assertEqual(ok, rt:wait_until_nodes_ready([Node])),
 
-    %% Set up a org, group and org.
+    %% Set up a org, role and org.
     {ok, OrgID} = rt_snarl:org_add(Node, ?ORG1),
 
     %% Verify we can set metadata

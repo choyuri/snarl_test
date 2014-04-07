@@ -10,7 +10,7 @@ confirm() ->
     [Node] = rt:deploy_nodes(1),
     ?assertEqual(ok, rt:wait_until_nodes_ready([Node])),
     {ok, UUID1} = rt_snarl:user_add(Node, ?USER1),
-    UserObj = [{<<"groups">>,[]},
+    UserObj = [
                {<<"keys">>,[]},
                {<<"metadata">>,[]},
                {<<"name">>,?USER1},
@@ -18,6 +18,7 @@ confirm() ->
                {<<"orgs">>,[]},
                {<<"permissions">>,
                 [[<<"users">>, UUID1, <<"...">>]]},
+               {<<"roles">>,[]},
                {<<"uuid">>, UUID1},
                {<<"yubikeys">>,[]}],
     ?assertEqual(ok, rt_snarl:user_passwd(Node, UUID1, ?USER1)),

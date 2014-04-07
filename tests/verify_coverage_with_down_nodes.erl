@@ -66,7 +66,7 @@ wait_and_validate(RingNodes, UpNodes, UUID1) ->
     done.
 
 user(Name, UUID) ->
-    [{<<"groups">>,[]},
+    [
      {<<"keys">>,[]},
      {<<"metadata">>,[]},
      {<<"name">>,Name},
@@ -74,5 +74,7 @@ user(Name, UUID) ->
      {<<"orgs">>,[]},
      {<<"permissions">>,
       [[<<"users">>, UUID, <<"...">>]]},
+     {<<"roles">>,[]},
      {<<"uuid">>, UUID},
-     {<<"yubikeys">>,[]}].
+     {<<"yubikeys">>,[]}
+    ].
