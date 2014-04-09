@@ -29,6 +29,7 @@
          user_lookup/2,
          user_passwd/3,
          user_revoke/3,
+         user_revoke_prefix/3,
          user_set/3,
          user_set/4,
          user_join_org/3,
@@ -45,6 +46,7 @@
          role_delete/2,
          role_grant/3,
          role_revoke/3,
+         role_revoke_prefix/3,
          role_set/3,
          role_set/4
         ]).
@@ -132,7 +134,10 @@ user_grant(Node, User, Permission) ->
     call(Node,libsnarl_msg:user_grant(User, Permission)).
 
 user_revoke(Node, User, Permission) ->
-    call(Node,libsnarl_msg:user_revoke(User, Permission)).
+    call(Node, libsnarl_msg:user_revoke(User, Permission)).
+
+user_revoke_prefix(Node, User, Prefix) ->
+    call(Node, libsnarl_msg:user_revoke_prefix(User, Prefix)).
 
 user_passwd(Node, User, Pass) ->
     call(Node,libsnarl_msg:user_passwd(User, Pass)).
@@ -196,6 +201,9 @@ role_grant(Node, Role, Permission) ->
 
 role_revoke(Node, Role, Permission) ->
     call(Node,libsnarl_msg:role_revoke(Role, Permission)).
+
+role_revoke_prefix(Node, Role, Prefix) ->
+    call(Node, libsnarl_msg:role_revoke_prefix(Role, Prefix)).
 
 %%%===================================================================
 %%% org Functions
