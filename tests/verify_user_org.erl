@@ -72,7 +72,21 @@ confirm() ->
 
     ?assertEqual(ok, rt_snarl:role_delete(Node, RoleID)),
     ?assertEqual(not_found, rt_snarl:role_get(Node, RoleID)),
+    timer:sleep(500),
     ?assertEqual([], user_roles(Node, UserID)),
+    ?assertEqual([], org_triggers(Node, OrgID)),
+
+
+    %% Adding a user trigger to see if ti get deleted
+    Trigger1 = {Event,
+                {grant, user, UserID,
+                 [<<"some">>, placeholder, <<"permission">>]}},
+    ?assertEqual(ok, rt_snarl:org_add_trigger(Node, OrgID, Trigger1)),
+    ?assertEqual(1, length(org_triggers(Node, OrgID))),
+
+    %% See if the trigger gets deleted when the user is deleted
+    ?assertEqual(ok, rt_snarl:user_delete(Node, UserID)),
+    timer:sleep(500),
     ?assertEqual([], org_triggers(Node, OrgID)),
 
     %% Deleting the role should
