@@ -35,7 +35,6 @@ confirm() ->
     ?assertEqual(ok, rt_snarl:user_select_org(Node, UserID, OrgID)),
     ?assertEqual({ok, OrgID}, rt_snarl:user_active_org(Node, UserID)),
 
-
     %% Tests if the user has no permissions.
     ?assertEqual(false,
                  rt_snarl:allowed(
@@ -52,5 +51,40 @@ confirm() ->
     ?assertEqual(true,
                  rt_snarl:allowed(
                    Node, UserID, [<<"some">>, Payload, <<"permission">>])),
+
+    %% Test if leaving the org resets the active org.
+    ?assertEqual(ok, rt_snarl:user_leave_org(Node, UserID, OrgID)),
+    ?assertEqual({ok, []}, rt_snarl:user_orgs(Node, UserID)),
+    ?assertEqual({ok, <<"">>}, rt_snarl:user_active_org(Node, UserID)),
+
+
+    %% Rejoin and select the org.
+    ?assertEqual(ok, rt_snarl:user_join_org(Node, UserID, OrgID)),
+    ?assertEqual({ok, [OrgID]}, rt_snarl:user_orgs(Node, UserID)),
+    ?assertEqual(ok, rt_snarl:user_select_org(Node, UserID, OrgID)),
+    ?assertEqual({ok, OrgID}, rt_snarl:user_active_org(Node, UserID)),
+
+    %% Check that we have 1 trigger
+    ?assertEqual(1, length(org_triggers(Node, OrgID))),
+
+    %% Deleting the role should delete the trigger and also delete the users
+    %% accociation with the role.
+
+    ?assertEqual(ok, rt_snarl:role_delete(Node, RoleID)),
+    ?assertEqual(not_found, rt_snarl:role_get(Node, RoleID)),
+    ?assertEqual([], user_roles(Node, UserID)),
+    ?assertEqual([], org_triggers(Node, OrgID)),
+
+    %% Deleting the role should
     pass.
 
+
+org_triggers(Node, OrgID) ->
+    {ok, Org} = rt_snarl:org_get(Node, OrgID),
+    {<<"triggers">>, Ts} = lists:keyfind(<<"triggers">>, 1, Org),
+    Ts.
+
+user_roles(Node, UserID) ->
+    {ok, Org} = rt_snarl:user_get(Node, UserID),
+    {<<"roles">>, Rs} = lists:keyfind(<<"roles">>, 1, Org),
+    Rs.
