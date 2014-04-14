@@ -65,9 +65,8 @@
 
 
 node_endpoing(Node) ->
-    {ok, IP} = rpc:call(Node, application, get_env, [mdns_server_lib, ip]),
-    {ok, Port} = rpc:call(Node, application, get_env, [mdns_server_lib, port]),
-    {IP, Port}.
+    {ok, IP} = rpc:call(Node, application, get_env, [mdns_server_lib, listener]),
+    IP.
 
 call(Node, Msg) ->
     {IP, Port} = node_endpoing(Node),
